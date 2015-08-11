@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="webResource:war">
+    <output-path>$PROJECT_DIR$/webResource/target</output-path>
+    <root id="archive" name="webResource.war">
+      <element id="artifact" artifact-name="webResource:war exploded" />
+    </root>
+  </artifact>
+</component>
