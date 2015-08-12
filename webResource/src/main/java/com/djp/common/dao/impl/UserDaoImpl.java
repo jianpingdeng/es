@@ -2,6 +2,8 @@ package com.djp.common.dao.impl;
 
 import com.djp.common.dao.UserDao;
 import com.djp.common.entity.User;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 
@@ -9,7 +11,11 @@ import java.util.Set;
  * Created by dengjianping on 2015/8/12.
  */
 public class UserDaoImpl implements UserDao {
+    private String IBATIS_MAP_NAME = "com.djp.common.entity.User";
+    @Autowired
+    private SqlSession sqlSession;
     public Set<String> findRoles(User user) {
+
         return null;
     }
 
@@ -18,6 +24,6 @@ public class UserDaoImpl implements UserDao {
     }
 
     public User findByUsername(User user) {
-        return null;
+        return sqlSession.selectOne(IBATIS_MAP_NAME+".query_user_info",user);
     }
 }

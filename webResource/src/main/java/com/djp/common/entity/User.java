@@ -4,6 +4,7 @@ package com.djp.common.entity;
  * Created by dengjianping on 2015/8/12.
  */
 public class User {
+    private int id;
     private String username;
     private String password;
     private boolean locked;
@@ -43,5 +44,13 @@ public class User {
 
     public String getCredentialsSalt() {
         return getUsername() + getSalt();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
