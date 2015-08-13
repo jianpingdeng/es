@@ -1,21 +1,20 @@
 package com.djp.common.dao.impl;
 
+import com.djp.common.dao.BaseDao;
 import com.djp.common.dao.UserDao;
 import com.djp.common.entity.User;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Assert;
 
 import java.util.Set;
 
 /**
- * Created by dengjianping on 2015/8/12.
+ * Created by dengjianping on 2015/8/13.
  */
-public class UserDaoImpl implements UserDao {
-    private String IBATIS_MAP_NAME = "com.djp.common.entity.User";
-    @Autowired
-    private SqlSession sqlSession;
+public class UserDaoImpl extends BaseDao<User> implements UserDao {
+    private static final String QUERY_BY_USRENAME=".selectUserByUsername";
     public Set<String> findRoles(User user) {
-
         return null;
     }
 
@@ -24,6 +23,9 @@ public class UserDaoImpl implements UserDao {
     }
 
     public User findByUsername(User user) {
-        return sqlSession.selectOne(IBATIS_MAP_NAME+".query_user_info",user);
+        SqlSession session = getSqlSessionFactory().openSession();
+        User result = session.selectOne(getName(User.class.getName())+QUERY_BY_USRENAME,user);
+        session.close();
+        return result;
     }
 }

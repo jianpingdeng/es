@@ -1,11 +1,26 @@
 package com.djp.common.dao;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.springframework.beans.factory.annotation.Autowired;
+
 /**
  * Created by dengjianping on 2015/8/12.
  */
-public interface BaseDao<T> {
-    public void insert(T t);
-    public void update(T t);
-    public void delete(T t);
-    public void queryById(T t,Object id);
+public class BaseDao<T> {
+    @Autowired
+    public SqlSessionFactoryBean sqlSessionFactoryBean;
+
+    public SqlSessionFactory getSqlSessionFactory() {
+        try {
+            return sqlSessionFactoryBean.getObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public String getName(String name){
+        return name;
+    }
 }
