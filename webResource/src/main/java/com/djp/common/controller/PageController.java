@@ -1,4 +1,4 @@
-package com.djp.es.controller;
+package com.djp.common.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

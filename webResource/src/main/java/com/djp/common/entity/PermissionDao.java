@@ -1,4 +1,4 @@
-package com.djp.common.dao;
+package com.djp.common.entity;
 
 /**
  * Created by dengjianping on 2015/8/12.
