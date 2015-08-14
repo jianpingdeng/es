@@ -6,6 +6,8 @@
     <title></title>
 </head>
 <body>
-${user.username}
+用户名：${user.username}<br/>
+密码：${user.password}<br/>
+状态:${user.locked}
 </body>
 </html>

@@ -1,11 +1,6 @@
 package com.djp.common.dao;
 
 import com.djp.common.entity.User;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Set;
@@ -26,7 +21,7 @@ public interface IUserDao {
 
     List<User> userListResult();
 
-    void insertUserEntity(User user);
+    boolean insertUserEntity(User user);
 
     void updateUser(User user);
 }

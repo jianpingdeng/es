@@ -7,7 +7,7 @@ public class User {
     private int id;
     private String username;
     private String password;
-    private boolean locked;
+    private int locked;
     private String salt;
 
     public String getUsername() {
@@ -26,11 +26,11 @@ public class User {
         this.password = password;
     }
 
-    public boolean isLocked() {
+    public int getLocked() {
         return locked;
     }
 
-    public void setLocked(boolean locked) {
+    public void setLocked(int locked) {
         this.locked = locked;
     }
 

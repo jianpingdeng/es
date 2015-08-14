@@ -1,30 +1,19 @@
 package com.djp.common.core;
+import com.ibatis.sqlmap.client.SqlMapClient;
+import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 
 /**
  * Created by dengjianping on 2015/8/12.
  */
-public class BaseDao {
-    @Autowired
-    public SqlSessionFactoryBean sqlSessionFactory;
+public class BaseDao extends SqlMapClientDaoSupport {
+    @Resource(name = "sqlMapClient")
+    private SqlMapClient sqlMapClient;
 
-    public void setSqlSessionFactory(SqlSessionFactoryBean sqlSessionFactory) {
-        this.sqlSessionFactory = sqlSessionFactory;
-    }
-
-    public SqlSessionFactory getSessionFactory() {
-        try {
-            return sqlSessionFactory.getObject();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-    public String getName(Class clazz){
-        return clazz.getName();
+    @PostConstruct
+    public void initSqlMapClient(){
+        super.setSqlMapClient(sqlMapClient);
     }
 }

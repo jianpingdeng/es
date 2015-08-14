@@ -8,24 +8,23 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: junit:junit:4.8.1" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-context:4.2.0.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.2.0.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-core:4.2.0.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.2.0.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-web:4.2.0.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.2.0.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.2.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:3.2.10.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:3.2.10.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:3.2.10.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:3.2.10.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:3.2.10.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:3.2.10.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:3.2.10.RELEASE" />
           <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-orm:4.2.0.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-test:4.2.0.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-oxm:4.2.0.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-tx:4.2.0.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:4.2.0.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-context-support:4.2.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-orm:3.2.10.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-test:3.2.10.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-oxm:3.2.10.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-tx:3.2.10.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:3.2.10.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context-support:3.2.10.RELEASE" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.6.12" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.6.12" />
-          <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.2.2" />
-          <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:1.2.2" />
+          <element id="library" level="project" name="Maven: org.apache.ibatis:ibatis-sqlmap:2.3.4.726" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.5" />
           <element id="library" level="project" name="Maven: com.alibaba:druid:1.0.5" />
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-validator:5.1.1.Final" />

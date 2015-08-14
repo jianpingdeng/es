@@ -39,7 +39,7 @@ public class ShiroJDBCRealm extends AuthorizingRealm {
         String username = (String) authenticationToken.getPrincipal();
         User user = userService.findByUsername(username);
         if(user == null) throw new UnknownAccountException();//没找到帐号
-        if(user.isLocked()) throw new LockedAccountException();//账户锁定
+        if(user.getLocked()==0) throw new LockedAccountException();//账户锁定
 
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 user.getUsername(),
