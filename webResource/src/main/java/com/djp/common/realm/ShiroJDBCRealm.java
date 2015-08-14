@@ -10,6 +10,9 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by dengjianping on 2015/8/12.
  */
@@ -29,8 +32,13 @@ public class ShiroJDBCRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         String username = (String) principalCollection.getPrimaryPrincipal();
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        authorizationInfo.setRoles(userService.findRoles(username));
-        authorizationInfo.setStringPermissions(userService.findPermissions(username));
+        User user = userService.findByUsername(username);
+        Set<String> roles = new HashSet<String>();
+        roles.addAll(userService.findRoles(user));
+        authorizationInfo.setRoles(roles);
+        Set<String> permissions = new HashSet<String>();
+        permissions.addAll(userService.findPermissions(user));
+        authorizationInfo.setStringPermissions(permissions);
         return authorizationInfo;
     }
 

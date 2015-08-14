@@ -16,4 +16,8 @@ public class BaseDao extends SqlMapClientDaoSupport {
     public void initSqlMapClient(){
         super.setSqlMapClient(sqlMapClient);
     }
+
+    public String getName(Class clazz){
+        return clazz.getName();
+    }
 }

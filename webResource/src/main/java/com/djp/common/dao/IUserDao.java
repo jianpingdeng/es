@@ -11,11 +11,11 @@ import java.util.Set;
 
 public interface IUserDao {
 
-    Set<String> findRoles(User user);
+    List<String> findRoles(User user);
 
     User selectUserByID(int id);
 
-    Set<String> findPermissions(User user);
+    List<String> findPermissions(User user);
 
     User selectUserByUsername(String username);
 

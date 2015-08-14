@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
         "http://ibatis.apache.org/dtd/sql-map-2.dtd">
-<sqlMap namespace="User">
+<sqlMap namespace="com.djp.common.dao.impl.UserDao">
 
     <typeAlias alias="User" type="com.djp.common.entity.User"/>
     <select id="findAllUser" resultClass="User" >
@@ -19,4 +19,13 @@
     <insert id="insertUser" parameterClass="User">
         insert into t_mysql_user(username,password,salt,status) values(#username#,#password#,#salt#,#locked#)
     </insert>
+    <select id="findRoles" parameterClass="User" resultClass="String">
+        SELECT r.role FROM t_mysql_roles r INNER JOIN t_mysql_user_role ru ON r.id = ru.role_id and ru.user_id = #id#
+    </select>
+
+    <select id="findPermissions" parameterClass="User" resultClass="String">
+        SELECT p.permission FROM t_mysql_roles r INNER JOIN t_mysql_user_role ru ON r.id = ru.role_id and ru.user_id = #id# INNER JOIN t_mysql_role_permission rp ON rp.role_id = r.id INNER JOIN t_mysql_permission p ON p.id=rp.permission_id;
+    </select>
+
+
 </sqlMap>

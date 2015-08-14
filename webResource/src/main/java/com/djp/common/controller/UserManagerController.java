@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by dengjianping on 2015/8/14.
@@ -27,6 +28,10 @@ public class UserManagerController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("userManage/userInfo");
         modelAndView.addObject("user", user);
+        List<String> permissions = userService.findPermissions(user);
+        List<String> roles = userService.findRoles(user);
+        modelAndView.addObject("roles",roles);
+        modelAndView.addObject("permissions",permissions);
         return modelAndView;
     }
 }

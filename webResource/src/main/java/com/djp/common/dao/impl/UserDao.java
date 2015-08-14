@@ -6,23 +6,24 @@ import com.djp.common.entity.User;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by dengjianping on 2015/8/14.
  */
 @Component
 public class UserDao extends BaseDao implements IUserDao {
-    public Set<String> findRoles(User user) {
-        return null;
+    public List<String> findRoles(User user) {
+        List<String> roles = getSqlMapClientTemplate().queryForList("findRoles", user);
+        return roles;
     }
 
     public User selectUserByID(int id) {
         return null;
     }
 
-    public Set<String> findPermissions(User user) {
-        return null;
+    public List<String> findPermissions(User user) {
+        List<String> permissions = getSqlMapClientTemplate().queryForList("findPermissions",user);
+        return permissions;
     }
 
     public User selectUserByUsername(String username) {

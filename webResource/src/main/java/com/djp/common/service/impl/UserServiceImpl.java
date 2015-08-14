@@ -1,13 +1,12 @@
 package com.djp.common.service.impl;
 
-import com.djp.common.core.BaseDao;
 import com.djp.common.dao.IUserDao;
 import com.djp.common.entity.User;
 import com.djp.common.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by dengjianping on 2015/8/12.
@@ -16,12 +15,13 @@ import java.util.Set;
 public class UserServiceImpl implements UserService{
     @Resource(name = "userDao")
     private IUserDao userDao;
-    public Set<String> findRoles(String username) {
-     return null;
+    public List<String> findRoles(User user) {
+     return userDao.findRoles(user);
     }
 
-    public Set<String> findPermissions(String username) {
-       return null;
+    public List<String> findPermissions(User user) {
+
+        return userDao.findPermissions(user);
     }
 
     public User findByUsername(String username) {
