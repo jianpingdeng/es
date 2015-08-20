@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,5 +34,23 @@ public class UserManagerController {
         modelAndView.addObject("roles",roles);
         modelAndView.addObject("permissions",permissions);
         return modelAndView;
+    }
+
+    /**
+     * 返回登录页面
+     * @return
+     */
+    @RequestMapping(value = "/login" ,method = RequestMethod.GET)
+    public String login(){
+        return "/login";
+    }
+
+    /**
+     * 返回无权限页面
+     * @return
+     */
+    @RequestMapping(value = "/unauthorized" ,method = RequestMethod.GET)
+    public String unauthorized(){
+        return "/unauthorized";
     }
 }

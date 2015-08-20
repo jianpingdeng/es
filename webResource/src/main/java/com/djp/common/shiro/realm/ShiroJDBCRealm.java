@@ -1,4 +1,4 @@
-package com.djp.common.realm;
+package com.djp.common.shiro.realm;
 
 import com.djp.common.entity.User;
 import com.djp.common.service.UserService;
