@@ -2,16 +2,22 @@ package com.djp.common.controller;
 
 import com.djp.common.entity.User;
 import com.djp.common.service.UserService;
+import org.apache.http.HttpRequest;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.session.HttpServletSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -22,7 +28,7 @@ import java.util.List;
 public class UserManagerController {
     @Resource
     private UserService userService;
-
+    @RequiresRoles(value = "admin")
     @RequestMapping(value = "/userInfo/{username}")
     public ModelAndView userInfo(@PathVariable String username){
         User user = userService.findByUsername(username);
@@ -43,6 +49,28 @@ public class UserManagerController {
     @RequestMapping(value = "/login" ,method = RequestMethod.GET)
     public String login(){
         return "/login";
+    }
+    /**
+     * ·µ»ØµÇÂ¼Ò³Ãæ
+     * @return
+     */
+    @RequestMapping(value = "/login" ,method = RequestMethod.POST)
+    public String login(@ModelAttribute User user,Model model,HttpServletRequest request){
+        String message = null;
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
+        try{
+            subject.login(token);
+            HttpSession session = request.getSession();
+            User userifno = userService.findByUsername((String) subject.getPrincipal());
+            session.setAttribute("userInfo", userifno);
+        }catch (AuthenticationException e){
+            message = "µÇÂ¼Ê§°Ü£¡";
+            model.addAttribute("error", "ÓÃ»§Ãû»òÃÜÂë´íÎó £¡");
+            return "/login";
+        }
+
+        return "/index";
     }
 
     /**

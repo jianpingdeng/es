@@ -5,7 +5,7 @@
 
     <typeAlias alias="User" type="com.djp.common.entity.User"/>
     <select id="findAllUser" resultClass="User" >
-        select * from t_mysql_user
+        select username as username,password as password,salt as salt,status as locked from t_mysql_user
     </select>
     <select id="findUserByID" resultClass="User" parameterClass="int">
         select * from t_mysql_user where id=#id#
@@ -14,7 +14,7 @@
         select count(*) from t_mysql_user
     </select>
     <select id="findUserByUsername" resultClass="User" parameterClass="String">
-        select * from t_mysql_user where username=#username#
+        select username as username,password as password,salt as salt,status as locked from t_mysql_user where username=#username#
     </select>
     <insert id="insertUser" parameterClass="User">
         insert into t_mysql_user(username,password,salt,status) values(#username#,#password#,#salt#,#locked#)

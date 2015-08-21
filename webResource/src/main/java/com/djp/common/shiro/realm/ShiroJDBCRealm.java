@@ -2,6 +2,8 @@ package com.djp.common.shiro.realm;
 
 import com.djp.common.entity.User;
 import com.djp.common.service.UserService;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -10,6 +12,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,6 +20,7 @@ import java.util.Set;
  * Created by dengjianping on 2015/8/12.
  */
 public class ShiroJDBCRealm extends AuthorizingRealm {
+    private Log log = LogFactory.getLog(ShiroJDBCRealm.class);
     @Autowired
     private UserService userService;
 
@@ -39,6 +43,10 @@ public class ShiroJDBCRealm extends AuthorizingRealm {
         Set<String> permissions = new HashSet<String>();
         permissions.addAll(userService.findPermissions(user));
         authorizationInfo.setStringPermissions(permissions);
+        System.out.println("加载用户权限："+Arrays.toString(permissions.toArray()));
+        System.out.println("加载角色："+ Arrays.toString(roles.toArray()));
+        log.debug("用户权限：" + permissions);
+        log.debug("用户权限："+roles);
         return authorizationInfo;
     }
 
