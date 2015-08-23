@@ -7,20 +7,23 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class RandomUtil {
     private  static int[] pool = null;
+    private static int[][] arrys = null;
+
     private  AtomicInteger poolLen = new AtomicInteger();
 
 
-    private  int[][] initData(int min ,int max ,int length){
+    private synchronized int[][] initData(int min ,int max ,int length){
+        if(arrys!=null){
+            return arrys;
+        }
         if(length>(max - min)) return null;
         int min_ = min;
         int MIN = min;
-        boolean flag = true;
         int y_length = 1+(int)Math.ceil(((float)((max - min)/length)));
-        int[][] arrys = new int[length][y_length];
+        arrys = new int[length][y_length];
         int index_x=0;
         int index_y=0;
         while(index_x <arrys.length){
-
             if(MIN<min_ + ((float)(max - min ))/ length && MIN < max){
                 arrys[index_x][index_y] = MIN;
                 index_y++;
@@ -51,13 +54,16 @@ public class RandomUtil {
         int poosize = initPool(weight[0]);
         int index_x = randomIndex(poosize, weight);
         int index_y = (int)(Math.random()*arrys[0].length);
+        System.out.print(" index_x:" + index_x + " index_y:" + index_y);
         return arrys[index_x][index_y];
+
     }
 
     private  int randomIndex(int poolsize,int[][] weight) {
         int y = (int)(Math.random()*poolsize);
         int result = -1;
         result = getPosition(y,weight);
+        System.out.print("========result:" + result + " randomY:" + y+" pool["+y+"]:"+pool[y]);
         if(pool[y]>0){
             //找和该位置等同的位置放置
             result =  setValueToBestPosition(result,weight);
@@ -82,7 +88,7 @@ public class RandomUtil {
         int skip = 0;
         int scop = 0;
         int result = -1;
-        Boolean flag = new Boolean(true);
+        Boolean resultflag = true;
         for (int index=0;index<weight[0].length;index++){
 
             if(position == weight[1][index]){
@@ -97,24 +103,33 @@ public class RandomUtil {
             synchronized (pool) {
                 if (pool[index] == 0) {
                     setValueToPool(index, weight);
-                    result = getPosition(index, weight);
+                    resultflag = false;
+                    result = position;
+                    System.out.print(" resltFalg11:"+resultflag+" ");
                     break;
                 }
             }
         }
         synchronized (pool) {
-            for (int index = 0; index < pool.length; index++) {
+            for (int index = 0;resultflag && index < pool.length; index++) {
                 if (pool[index] == 0) {
                     setValueToPool(index, weight);
                     result = getPosition(index, weight);
+                    resultflag  = false;
+                    System.out.print(" resltFalg22:"+resultflag+" ");
                     break;
                 }
             }
         }
+
+        if(resultflag){
+            pool = null;
+            initPool(weight[0]);
+            System.out.print(" resltFalg33:"+resultflag+" ");
+        }
         return result;
     }
     private  int getPosition(int index,int[][] weight){
-        int x = 0;
         int inc=0;
         int result = -1;
         for (int y=0;y<weight[0].length;y++){
