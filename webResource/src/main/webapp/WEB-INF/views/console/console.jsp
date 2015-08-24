@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: CL
-  Date: 2015-08-21
-  Time: 23:36
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -18,7 +11,7 @@
     <meta name="author" content="">
    <%-- <link rel="icon" href="../../favicon.ico">--%>
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>系统管理控制台v1.0</title>
 
     <!-- Bootstrap core CSS -->
     <link href="${pageContext.request.contextPath}/theme/css/bootstrap.min.css" rel="stylesheet">
@@ -27,8 +20,8 @@
     <link href="${pageContext.request.contextPath}/theme/css/console/dashboard.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="${pageContext.request.contextPath}/theme/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    <!--[if lt IE 9]><script src="${pageContext.request.contextPath}/theme/js/console/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="${pageContext.request.contextPath}/theme/js/console/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -48,14 +41,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="#">系统管理控制台v1.0</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Settings</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Help</a></li>
+                <li><a href="/pages/index">欢迎admin登录</a></li>
+                <li><a href="#">系统设置</a></li>
+                <li><a href="/logout">退出系统</a></li>
+                <li><a href="#">帮助</a></li>
             </ul>
             <form class="navbar-form navbar-right">
                 <input type="text" class="form-control" placeholder="Search...">
@@ -66,28 +59,31 @@
 
 <div class="container-fluid">
     <div class="row">
+        <!--菜单间内容开始-->
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Reports</a></li>
-                <li><a href="#">Analytics</a></li>
-                <li><a href="#">Export</a></li>
+                <li class="active"><a href="#">系统管理<span class="sr-only">(current)</span></a></li>
+                <li><a href="#">用户管理</a></li>
+                <li><a href="#">角色管理</a></li>
+                <li><a href="#">权限管理</a></li>
             </ul>
             <ul class="nav nav-sidebar">
-                <li><a href="">Nav item</a></li>
+                <li><a href="">数据字典</a></li>
                 <li><a href="">Nav item again</a></li>
                 <li><a href="">One more nav</a></li>
                 <li><a href="">Another nav item</a></li>
                 <li><a href="">More navigation</a></li>
             </ul>
             <ul class="nav nav-sidebar">
-                <li><a href="">Nav item again</a></li>
+                <li><a href="">资源管理</a></li>
                 <li><a href="">One more nav</a></li>
                 <li><a href="">Another nav item</a></li>
             </ul>
         </div>
+        <!--菜单间内容结束-->
+        <!--中间内容开始-->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Dashboard</h1>
+            <h1 class="page-header">系统运营数据</h1>
 
             <div class="row placeholders">
                 <div class="col-xs-6 col-sm-3 placeholder">
@@ -112,7 +108,7 @@
                 </div>
             </div>
 
-            <h2 class="sub-header">Section title</h2>
+            <h2 class="sub-header">系统登录信息</h2>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -241,6 +237,7 @@
                 </table>
             </div>
         </div>
+        <!--中间内容结束-->
     </div>
 </div>
 
@@ -248,11 +245,11 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/theme/js/bootstrap.min.js"></script>
 <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-<script src="../../assets/js/vendor/holder.min.js"></script>
+<!--<script src="/js/vendor/holder.min.js"></script>-->
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="${pageContext.request.contextPath}/theme/js/console/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
 

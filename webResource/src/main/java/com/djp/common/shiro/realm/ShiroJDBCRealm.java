@@ -43,10 +43,10 @@ public class ShiroJDBCRealm extends AuthorizingRealm {
         Set<String> permissions = new HashSet<String>();
         permissions.addAll(userService.findPermissions(user));
         authorizationInfo.setStringPermissions(permissions);
-        System.out.println("加载用户权限："+Arrays.toString(permissions.toArray()));
-        System.out.println("加载角色："+ Arrays.toString(roles.toArray()));
-        log.debug("用户权限：" + permissions);
-        log.debug("用户权限："+roles);
+        System.out.println("load permissions:"+Arrays.toString(permissions.toArray()));
+        System.out.println("load roles:"+ Arrays.toString(roles.toArray()));
+        log.debug("user permissions:" + permissions);
+        log.debug("user roles:"+roles);
         return authorizationInfo;
     }
 

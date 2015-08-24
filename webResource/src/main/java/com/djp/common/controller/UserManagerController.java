@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -28,7 +30,7 @@ import java.util.List;
 public class UserManagerController {
     @Resource
     private UserService userService;
-    @RequiresRoles(value = "admin")
+//    @RequiresRoles(value = "admin")
     @RequestMapping(value = "/userInfo/{username}")
     public ModelAndView userInfo(@PathVariable String username){
         User user = userService.findByUsername(username);
@@ -55,7 +57,7 @@ public class UserManagerController {
      * @return
      */
     @RequestMapping(value = "/login" ,method = RequestMethod.POST)
-    public String login(@ModelAttribute User user,Model model,HttpServletRequest request){
+    public String login(@ModelAttribute User user,Model model,HttpServletRequest request,HttpServletResponse response){
         String message = null;
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
@@ -64,13 +66,22 @@ public class UserManagerController {
             HttpSession session = request.getSession();
             User userifno = userService.findByUsername((String) subject.getPrincipal());
             session.setAttribute("userInfo", userifno);
+            model.addAttribute("user", userifno);
+            Cookie[] cookies = request.getCookies();
+
+            if(cookies!=null){
+                for (Cookie cookie:cookies){
+                    cookie.setMaxAge(24*60*60);
+                    response.addCookie(cookie);
+                }
+            }
         }catch (AuthenticationException e){
             message = "µÇÂ¼Ê§°Ü£¡";
             model.addAttribute("error", "ÓÃ»§Ãû»òÃÜÂë´íÎó £¡");
             return "/login";
         }
 
-        return "/index";
+        return "/console/console";
     }
 
     /**

@@ -14,7 +14,7 @@
         select count(*) from t_mysql_user
     </select>
     <select id="findUserByUsername" resultClass="User" parameterClass="String">
-        select username as username,password as password,salt as salt,status as locked from t_mysql_user where username=#username#
+        select id as id, username as username,password as password,salt as salt,status as locked from t_mysql_user where username=#username#
     </select>
     <insert id="insertUser" parameterClass="User">
         insert into t_mysql_user(username,password,salt,status) values(#username#,#password#,#salt#,#locked#)

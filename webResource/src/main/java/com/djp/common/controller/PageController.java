@@ -13,7 +13,6 @@ public class PageController {
     Logger log = LoggerFactory.getLogger(PageController.class);
     @RequestMapping("/pages/index")
     public String index(){
-        log.info("go to index.jsp");
         return "/index";
     }
 }
