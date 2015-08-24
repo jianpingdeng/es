@@ -83,8 +83,8 @@
         <!--菜单间内容结束-->
         <!--中间内容开始-->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">系统运营数据</h1>
-
+            <jsp:include page="../userManage/userList.jsp"/>
+<!--
             <div class="row placeholders">
                 <div class="col-xs-6 col-sm-3 placeholder">
                     <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
@@ -107,8 +107,9 @@
                     <span class="text-muted">Something else</span>
                 </div>
             </div>
+-->
 
-            <h2 class="sub-header">系统登录信息</h2>
+            <!--
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -237,8 +238,11 @@
                 </table>
             </div>
         </div>
+
+        -->
         <!--中间内容结束-->
-    </div>
+
+        </div>
 </div>
 
 <!-- Bootstrap core JavaScript

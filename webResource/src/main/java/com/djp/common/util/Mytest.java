@@ -11,7 +11,7 @@ public class Mytest implements Runnable {
     public static void main(String[] args) {
         Mytest test = new Mytest();
 
-        for (int i=0;i<10000;i++){
+        for (int i=0;i<20000;i++){
             test.run();
         }
 
